@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(FlecsLib LANGUAGES C)
+
+#Set directories below
+set(BASE_DIR .)
+set(SOURCES_DIR ${BASE_DIR}/src)
+set(HEADERS_DIR ${BASE_DIR}/include)
+
+file (GLOB_RECURSE SOURCE_FILES ${SOURCES_DIR}/*.c)
+
+add_library(${PROJECT_NAME} STATIC)
+target_sources(${PROJECT_NAME} PRIVATE ${SOURCE_FILES})
+
+target_include_directories (
+        ${PROJECT_NAME}
+        PUBLIC
+        ${HEADERS_DIR}
+        ${SOURCES_DIR}
+        )
+
+target_compile_features(${PROJECT_NAME} PRIVATE c_std_17)
