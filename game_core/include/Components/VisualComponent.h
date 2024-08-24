@@ -1,8 +1,10 @@
 #ifndef VISUALCOMPONENT2D_H
 #define VISUALCOMPONENT2D_H
 
-#include <memory>
+#include "Component.h"
+
 #include "Utils/SDLutils.h"
+#include <memory>
 
 /*
 *  - **Texture**: Reference to the image or sprite sheet.
@@ -12,7 +14,7 @@
  */
 
 namespace game_core {
-  class VisualComponent {
+  class VisualComponent : public Component {
     public:
     VisualComponent(const std::string& filename, SDL_Renderer *renderer,
       int drawLayer = 1); //draw layer 0 = background

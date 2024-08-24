@@ -5,13 +5,16 @@
 #include "box2d/types.h"
 
 namespace game_core {
-
-RigidBodyComponent::RigidBodyComponent(b2WorldId world) {
-  const b2BodyDef bodyDef = b2DefaultBodyDef();
-  m_bodyID = b2CreateBody(world, &bodyDef);
+//TODO Add meaningful update order to inits for ALL components
+RigidBodyComponent::RigidBodyComponent(b2WorldId world)
+  : Component(100) {
+    const b2BodyDef bodyDef = b2DefaultBodyDef();
+    m_bodyID = b2CreateBody(world, &bodyDef);
 }
-RigidBodyComponent::RigidBodyComponent(b2WorldId world, const b2BodyDef *settings) {
-  m_bodyID = b2CreateBody(world, settings);
+
+RigidBodyComponent::RigidBodyComponent(b2WorldId world, const b2BodyDef *settings)
+  : Component(100) {
+    m_bodyID = b2CreateBody(world, settings);
 }
 
 RigidBodyComponent::~RigidBodyComponent() {

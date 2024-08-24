@@ -1,6 +1,7 @@
 #ifndef RIGIDBODYBASE_H
 #define RIGIDBODYBASE_H
 
+#include "Component.h"
 #include "box2d/id.h"
 #include "box2d/types.h"
 
@@ -8,7 +9,7 @@ struct b2BodyDef;
 
 namespace game_core {
 
-class RigidBodyComponent {
+class RigidBodyComponent : public Component {
 public:
   // pass by value required by box2d
   explicit RigidBodyComponent(b2WorldId world);
