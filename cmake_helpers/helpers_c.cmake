@@ -25,7 +25,7 @@ function(enable_target_cxx_warnings target)
           -Wcast-qual
           -Wunused-parameter
           #-Wlogical-op
-          -Wdouble-promotion
+          #-Wdouble-promotion
           #-Wduplicated-cond
           #-Wduplicated-branches
           -Wnull-dereference

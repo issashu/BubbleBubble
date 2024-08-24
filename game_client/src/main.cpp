@@ -1,16 +1,23 @@
-//System headers
-
-//Misc 3rd party libs
-
-//Own libs and headers
-#include "game/include/main.h"
+#include "game_client/include/main.h"
+#include "game_client/include/GameClient.h"
 
 int main() {
-    GameStateManager* Manager = getGameStateManager();
-    //FIXME Magic number fix once we have main menu
-    if(Manager->switchState(3)) {
-        return EXIT_FAILURE;
-    }
-    deinitGameStateManager();
-    return EXIT_SUCCESS;
+  //TODO Add a gameInit method
+  auto client = game_client::GameClient();
+
+  //TODO Add game loop here
+  /*
+   * Handle input
+   * Send to server
+   * Wait for logic from server
+   * Update objects
+   * Draw screen
+   * Play sounds
+   */
+
+  //TODO Remove debug calls below
+
+  client.UpdatePhysics();
+  client.DrawGraphics();
+  //To here
 }
