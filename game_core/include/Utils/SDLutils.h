@@ -5,7 +5,8 @@
 #ifndef SDLUTILS_H
 #define SDLUTILS_H
 
-#include <SDL2/SDL.h>
+#include "SDL2/SDL.h"
+#include "SDL_image.h"
 
 struct sdl_deleter
 {

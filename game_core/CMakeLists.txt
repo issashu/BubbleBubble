@@ -12,6 +12,7 @@ file (GLOB_RECURSE HEADER_FILES ${_HEADERS_DIR}/*.h)
 add_subdirectory(${_BASE_DIR}/Externals/Asio)
 add_subdirectory(${_BASE_DIR}/Externals/Flecs)
 add_subdirectory(${_BASE_DIR}/Externals/SDL2)
+add_subdirectory(${_BASE_DIR}/Externals/SDL_image)
 add_subdirectory(${_BASE_DIR}/Externals/box2d)
 add_subdirectory(${_BASE_DIR}/Externals/flatbuffers)
 add_subdirectory(${_BASE_DIR}/Externals/tileson)
@@ -39,6 +40,7 @@ target_link_libraries(${PROJECT_NAME}
         FlatBuffers
         FlecsLib
         SDL2
+        SDL2_image
         TilesonLib
         enkiTS
         EnTT
@@ -46,4 +48,3 @@ target_link_libraries(${PROJECT_NAME}
 
 #Additional project settings (cmake helpers dir)
 #enable_target_cxx_warnings(${PROJECT_NAME})
-set_target_cxx_standard(${PROJECT_NAME} 20)

@@ -2,15 +2,20 @@
 #include "Components/Component.h"
 
 namespace game_core {
-  Actor::Actor() {}
+  Actor::Actor() : status(EActorStatus::enabled) {}
   Actor::~Actor() {}
 
   bool Actor::AddComponent(Component *component) {
-    if (!component) { return false;}
+    if (!component) {
+      return false;
+    }
 
-    component->SetOwner(this); //TODO Rethink if component needs to know its owner
+    component->SetOwner(
+        this); // TODO Rethink if component needs to know its owner
     m_components.push_back(component);
-
     return true;
   }
-}// namespace game_core
+  Component *Actor::GetComponent(int index) const {
+    return m_components[index];
+  }
+  } // namespace game_core

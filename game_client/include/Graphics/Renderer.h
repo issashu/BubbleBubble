@@ -11,6 +11,8 @@ public:
   Renderer();
   ~Renderer() = default;
 
+  SDL_Renderer* getRenderer() const;
+
   void Render() const;
   void RenderAndDelay(uint32_t ms) const;
   void RenderClear() const;

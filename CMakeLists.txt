@@ -41,4 +41,8 @@ add_subdirectory(game_client)
 #add_subdirectory(game_server)
 
 # Global Settings
+# Global Settings
 add_compile_definitions(_DEFAULT_SOURCE=1)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)

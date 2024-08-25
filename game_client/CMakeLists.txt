@@ -14,7 +14,7 @@ set(_SOURCES_DIR ${_BASE_DIR}/src)
 # Grab all files as a glob
 file (GLOB_RECURSE SOURCE_FILES ${_SOURCES_DIR}/*.cpp)
 file (GLOB_RECURSE HEADER_FILES ${_HEADERS_DIR}/*.h)
-file (GLOB_RECURSE ASSET_FILES  ${_GAME_ASSETS_DIR})
+file (GLOB_RECURSE ASSET_FILES  ${_GAME_ASSETS_DIR}/*.png)
 
 # OS based executable
 if (TARGET_PLATFORM STREQUAL "MACOSX_BUNDLE")
@@ -28,6 +28,7 @@ endif ()
 target_include_directories(${PROJECT_NAME}
         PRIVATE
         ${_HEADERS_DIR}
+        ${ASSET_FILES}
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -35,6 +36,10 @@ target_link_libraries(${PROJECT_NAME}
         game_core
 )
 
+# Pass directories to the compiler as a define
+target_compile_definitions(${PROJECT_NAME}
+        PRIVATE ASSETS_DIR="${_GAME_ASSETS_DIR}"
+)
+
 #Additional project settings (cmake helpers dir)
 #$enable_target_cxx_warnings(${PROJECT_NAME})
-set_target_cxx_standard(${PROJECT_NAME} 20)

@@ -12,10 +12,9 @@ namespace game_core {
 class RigidBodyComponent : public Component {
 public:
   // pass by value required by box2d
-  explicit RigidBodyComponent(b2WorldId world);
-  RigidBodyComponent(b2WorldId world,
-            const b2BodyDef *settings);
-  ~RigidBodyComponent();
+  explicit RigidBodyComponent(b2WorldId world, int updateOrder);
+  RigidBodyComponent(b2WorldId world, const b2BodyDef *settings, int updateOrder);
+  ~RigidBodyComponent() override;
 
   b2BodyId GetBodyID() const;
   bool isValid() const;

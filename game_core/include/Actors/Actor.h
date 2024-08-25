@@ -5,16 +5,27 @@
 namespace game_core {
 class Component;
 
+enum class EActorStatus {
+  alive = 0,
+  dead,
+  enabled,
+  disabled,
+  count
+};
+
 class Actor {
 public:
   Actor();
   ~Actor();
 
+  Actor(const Actor &other);
+
   bool AddComponent(Component *component);
-  void UpdateComponents() const;
+  Component *GetComponent(int index) const;
 
 private:
   std::vector<Component *> m_components;
+  EActorStatus status;
 };
 } // namespace game_core
 

@@ -2,6 +2,7 @@
 #define GAMECLIENT_H
 
 #include <memory>
+#include "SDL2/SDL.h"
 
 namespace game_core {
 class Renderer;
@@ -15,8 +16,12 @@ public:
   GameClient();
   ~GameClient();
 
+  bool GameInitialize();
+
+  bool GetInput(); //TODO Is still only for debugging - fix
   void UpdatePhysics();
   void DrawGraphics() const;
+  void DrawGraphicsAndClear() const;
   void PlaySound();
 
   std::weak_ptr<game_core::PhysicsWorld> GetPhysicsWorld();

@@ -15,7 +15,6 @@ public:
 
 private:
   b2WorldId m_worldId;
-  //TODO Find a way to trick b2D to allow access to getWorldByID w/o modifying it
 };
 
 }//namespace game_engine
