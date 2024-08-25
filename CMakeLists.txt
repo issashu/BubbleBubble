@@ -23,6 +23,15 @@ if (APPLE)
     set(CMAKE_OSX_ARCHITECTURES "arm64")
 endif ()
 
+# Determine the OS platform and set a variable accordingly
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(TARGET_PLATFORM "MACOSX_BUNDLE")
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(TARGET_PLATFORM "WIN32")
+else ()
+    set(TARGET_PLATFORM "")
+endif ()
+
 # Module Path
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake_helpers/find_modules)
 

@@ -2,24 +2,28 @@ cmake_minimum_required(VERSION 3.20)
 
 project(game_client LANGUAGES CXX)
 
+# Print the target platform for debugging
+message(STATUS "Target platform is ${TARGET_PLATFORM}")
+
+# Set directories for the build
 set(_BASE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(_GAME_ASSETS_DIR ${_BASE_DIR}/assets)
 set(_HEADERS_DIR ${_BASE_DIR}/include)
 set(_SOURCES_DIR ${_BASE_DIR}/src)
 
+# Grab all files as a glob
 file (GLOB_RECURSE SOURCE_FILES ${_SOURCES_DIR}/*.cpp)
 file (GLOB_RECURSE HEADER_FILES ${_HEADERS_DIR}/*.h)
 file (GLOB_RECURSE ASSET_FILES  ${_GAME_ASSETS_DIR})
 
-add_executable(${PROJECT_NAME}
-        ${SOURCE_FILES}
-        ${ASSET_FILES}
-)
-
-target_sources(${PROJECT_NAME}
-        PRIVATE
-        ${SOURCE_FILES}
-)
+# OS based executable
+if (TARGET_PLATFORM STREQUAL "MACOSX_BUNDLE")
+    add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCE_FILES} ${ASSET_FILES})
+elseif (TARGET_PLATFORM STREQUAL "WIN32")
+    add_executable(${PROJECT_NAME} WIN32 ${SOURCE_FILES} ${ASSET_FILES})
+else ()
+    add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${ASSET_FILES})
+endif ()
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE
