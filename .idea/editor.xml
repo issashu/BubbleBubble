@@ -88,7 +88,7 @@
     <option name="/Default/CodeStyle/CppIncludeDirective/SortIncludeDirectives/@EntryValue" value="true" type="bool" />
     <option name="/Default/CodeStyle/CodeFormatting/CppCodeStyle/UseAutoForNumeric/@EntryValue" value="WhenTypeIsEvident" type="string" />
     <option name="/Default/CodeStyle/CodeFormatting/CppCodeStyle/TypeAliasStyle/@EntryValue" value="Typedefs" type="string" />
-    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="9" type="long" />
+    <option name="/Default/Environment/Hierarchy/GeneratedFilesCacheKey/Timestamp/@EntryValue" value="18" type="long" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
   </component>
 </project>

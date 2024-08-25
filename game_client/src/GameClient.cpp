@@ -1,5 +1,4 @@
-#include "game_client/include/GameClient.h"
-
+#include "GameClient.h"
 #include "Renderer/Renderer.h"
 #include "Physics/PhysicsWorld.h"
 

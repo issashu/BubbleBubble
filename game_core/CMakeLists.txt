@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(game_engine LANGUAGES CXX)
+project(game_core LANGUAGES CXX)
 
 set(_BASE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(_HEADERS_DIR ${_BASE_DIR}/include)
@@ -24,6 +24,7 @@ add_library(${PROJECT_NAME} STATIC
 )
 
 target_sources(${PROJECT_NAME} PRIVATE ${SOURCE_FILES})
+
 target_include_directories(${PROJECT_NAME}
         PUBLIC
         ${_HEADERS_DIR}
@@ -43,4 +44,6 @@ target_link_libraries(${PROJECT_NAME}
         EnTT
         )
 
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+#Additional project settings (cmake helpers dir)
+#enable_target_cxx_warnings(${PROJECT_NAME})
+set_target_cxx_standard(${PROJECT_NAME} 20)

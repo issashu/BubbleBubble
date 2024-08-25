@@ -23,7 +23,7 @@ function(enable_target_cxx_warnings target)
           -Wpointer-arith
           -Wcast-align
           -Wcast-qual
-          -Wunused-parameter
+          #-Wunused-parameter
           #-Wlogical-op
           #-Wdouble-promotion
           #-Wduplicated-cond

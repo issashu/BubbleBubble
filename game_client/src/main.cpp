@@ -1,5 +1,5 @@
-#include "game_client/include/main.h"
-#include "game_client/include/GameClient.h"
+#include "main.h"
+#include "GameClient.h"
 
 int main() {
   //TODO Add a gameInit method
