@@ -17,6 +17,7 @@ public:
   ~GameClient();
 
   bool GameInitialize();
+  bool GameAssetsLoad();
 
   bool GetInput(); //TODO Is still only for debugging - fix
   void UpdatePhysics();

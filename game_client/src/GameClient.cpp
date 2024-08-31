@@ -1,10 +1,15 @@
 #include "GameClient.h"
 
-#include "Actors/Actor.h"
 #include "Components/SpriteComponent.h"
 #include "Graphics/Renderer.h"
 #include "Physics/PhysicsWorld.h"
 #include "SDL_image.h"
+
+#include "nlohmann/json_fwd.hpp"
+
+#include <fstream>
+#include <iostream>
+#include <nlohmann/json.hpp>
 
 namespace game_client {
 
@@ -29,11 +34,6 @@ bool GameClient::GameInitialize() {
   //Initialise managers
   m_physic_world = std::make_shared<game_core::PhysicsWorld>();
   m_renderer = std::make_shared<game_core::Renderer>();
-
-  //TODO Remove below
-
-
-  //To here
 
   return true;
 }
@@ -86,4 +86,15 @@ std::weak_ptr<game_core::Renderer> GameClient::GetRenderer() {
   return m_renderer;
 }
 
+bool GameClient::GameAssetsLoad() {
+  using json = nlohmann::ordered_json;
+
+  std::ifstream config(ASSETS_DIR"/game_objects_config.json");
+  json parsedConfig = json::parse(config);
+  for(auto item : parsedConfig["items"].items()) {
+    std::cout << item.value()["components"][0]["position"] << std::endl;
+  }
+  return true;
+
+}
 } // namespace game_client

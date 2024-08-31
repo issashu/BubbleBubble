@@ -13,6 +13,14 @@ enum class EActorStatus {
   count
 };
 
+enum class EActorType {
+  player = 0,
+  enemy,
+  bullet,
+  count
+};
+
+/////////////////////////////////////////////////////////////
 class Actor {
 public:
   Actor();
