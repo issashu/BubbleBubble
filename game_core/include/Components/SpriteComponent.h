@@ -11,7 +11,8 @@ namespace game_core {
 
 enum class ESpriteComponentType {
   single = 0,
-  animation
+  animation,
+  count
 };
 
 using Texture = std::unique_ptr<SDL_Texture, sdl_deleter>;
@@ -19,7 +20,7 @@ using Textures = std::vector<Texture>;
 
   class SpriteComponent : public Component {
     public:
-    explicit SpriteComponent(int drawLayer, int updateOrder, ESpriteComponentType type = ESpriteComponentType::single, int fps = 0); // draw layer 0 = background
+    explicit SpriteComponent(); // draw layer 0 = background
     ~SpriteComponent() override = default;  //TODO Check for leaks. Don't trust the unique ptr and def destr :P
 
     void AddTexture(SDL_Texture *texture);
@@ -33,6 +34,7 @@ using Textures = std::vector<Texture>;
     void SetCurrentFrame(int frame); //for animation resets
 
     void Update(float deltaTime);
+    void Initialize(int drawLayer, int updateOrder, ESpriteComponentType type = ESpriteComponentType::single, int fps = 0);
 
   private:
     Textures m_textures;

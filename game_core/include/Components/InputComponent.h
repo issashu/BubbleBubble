@@ -5,14 +5,25 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-enum class InputOrigin {
-  local = 0,
-  network,
+namespace game_core {
+
+class InputComponent : public Component {
+public:
+  InputComponent();
+  ~InputComponent() override;
+  //TODO Finish this!
+private:
+  enum class InputOrigin {
+    local = 0,
+    network,
+  };
+
+  enum class InputType {
+    keyboard = 0,
+    controller
+  };
 };
 
-enum class InputType {
-  keyboard = 0,
-  controller
-};
+}
 
 #endif //INPUT_H

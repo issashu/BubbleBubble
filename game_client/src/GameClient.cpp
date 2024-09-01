@@ -89,12 +89,10 @@ std::weak_ptr<game_core::Renderer> GameClient::GetRenderer() {
 bool GameClient::GameAssetsLoad() {
   using json = nlohmann::ordered_json;
 
-  std::ifstream config(ASSETS_DIR"/game_objects_config.json");
-  json parsedConfig = json::parse(config);
-  for(auto item : parsedConfig["items"].items()) {
-    std::cout << item.value()["components"][0]["position"] << std::endl;
-  }
+  std::ifstream config_file(ASSETS_DIR"/game_objects_config.json");
+  json parsedConfigFile = json::parse(config_file);
+  auto numberActors = parsedConfigFile["actors"].size();
+  //TODO Initialise GameObject manager pre-allocating fixed size vector for actors
   return true;
-
 }
 } // namespace game_client

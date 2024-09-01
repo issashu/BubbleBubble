@@ -1,7 +1,3 @@
-//
-// Created by Issashu Greybeard on 15.08.24.
-//
-
 /*
 *    - **Position**: Stores the entity's X and Y coordinates.
    - **Rotation**: Stores the rotation angle, usually in degrees.
@@ -9,16 +5,24 @@
  */
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
+namespace game_core {
 
-typedef struct Transform {
-  float X;
-  float Y;
+class TransformComponent final : public Component {
+  public:
+  TransformComponent();
+  ~TransformComponent() override;
 
-  enum class Facing {
-    Left =0,
-    Right,
-    None
-  };
-}TransformComponent;
+  private:
+    float X;
+    float Y;
+    enum class Facing {
+      Left =0,
+      Right,
+      None
+    };
+};
+
+};
+
 
 #endif //TRANSFORM_H

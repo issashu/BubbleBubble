@@ -6,16 +6,6 @@
 
 namespace game_core {
 //TODO Add meaningful update order to inits for ALL components
-RigidBodyComponent::RigidBodyComponent(b2WorldId world, int updateOrder)
-  : Component(updateOrder) {
-    const b2BodyDef bodyDef = b2DefaultBodyDef();
-    m_bodyID = b2CreateBody(world, &bodyDef);
-}
-
-RigidBodyComponent::RigidBodyComponent(b2WorldId world, const b2BodyDef *settings, int updateOrder)
-  : Component(updateOrder) {
-    m_bodyID = b2CreateBody(world, settings);
-}
 
 RigidBodyComponent::~RigidBodyComponent() {
   b2DestroyBody(m_bodyID);
@@ -34,8 +24,10 @@ bool RigidBodyComponent::isEnabled() const {
 b2BodyType RigidBodyComponent::GetType() const {
   return b2Body_GetType(m_bodyID);
 }
-bool RigidBodyComponent::isBullet() const {
-  return b2Body_IsBullet(m_bodyID);
+bool RigidBodyComponent::isBullet() const { return b2Body_IsBullet(m_bodyID); }
+
+void RigidBodyComponent::Initialize(b2WorldId world, const b2BodyDef *settings) {
+  m_bodyID = b2CreateBody(world, settings);
 }
 
 void RigidBodyComponent::ApplyForce(const b2Vec2 &force, const b2Vec2 &point,

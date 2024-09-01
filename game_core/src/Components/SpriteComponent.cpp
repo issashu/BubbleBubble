@@ -3,10 +3,11 @@
 
 namespace game_core {
 
-SpriteComponent::SpriteComponent(int drawLayer, int updateOrder,
-                                 ESpriteComponentType type, int fps)
-    : Component(updateOrder), m_type(type), m_drawingLayer(drawLayer),
-      m_currentFrame(0), m_animationFPS(fps) {}
+SpriteComponent::SpriteComponent()
+: Component(),  m_type(ESpriteComponentType::count),
+  m_drawingLayer(0), m_currentFrame (0), m_animationFPS (0) {
+
+}
 
 void SpriteComponent::AddTexture(SDL_Texture *texture) {
   m_textures.emplace_back(texture);
@@ -32,10 +33,16 @@ void SpriteComponent::Update(float deltaTime) {
     while (m_currentFrame >= m_textures.size()) {
       m_currentFrame -= m_textures.size();
     }
-  }
-  else {
+  } else {
     m_currentFrame = 0;
   }
+}
+void SpriteComponent::Initialize(int drawLayer, int updateOrder,
+                                 ESpriteComponentType type, int fps) {
+  m_drawingLayer = drawLayer;
+  SetUpdateOrder(updateOrder);
+  m_type = type;
+  m_animationFPS = fps;
 }
 
 void SpriteComponent::SetDrawLayer(int drawLayer) {
