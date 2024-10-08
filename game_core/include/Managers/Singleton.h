@@ -34,4 +34,9 @@ std::unique_ptr<T> Singleton<T>::m_instance = nullptr;
 template <typename T>
 std::mutex Singleton<T>::m_mutex;
 
+template <typename T>
+void CustomDeleter(T* ptr) {
+  delete ptr;
+}
+
 #endif //SINGLETON_H

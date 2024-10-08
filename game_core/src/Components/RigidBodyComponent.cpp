@@ -8,10 +8,14 @@ namespace game_core {
 //TODO Add meaningful update order to inits for ALL components
 
 RigidBodyComponent::~RigidBodyComponent() {
-  b2DestroyBody(m_bodyID);
+  if(isValid()) {
+    b2DestroyBody(m_bodyID);
+  }
 }
 
-b2BodyId RigidBodyComponent::GetBodyID() const { return m_bodyID; }
+b2BodyId RigidBodyComponent::GetBodyID() const {
+  return m_bodyID;
+}
 
 bool RigidBodyComponent::isValid() const {
   return b2Body_IsValid(m_bodyID);

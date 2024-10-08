@@ -1,31 +1,33 @@
 #include "Actors/ActorFactory.h"
 #include "Actors/Actor.h"
-#include "Components/Component.h"
 #include "Utils/Utils.h"
 
-std::unique_ptr<game_core::Actor> ActorFactory::CreateActor() {
-  // Parse the config and add components here + name the thingy + make it an
-  // object to return below
-  return std::make_unique<game_core::Actor>();
-}
+namespace game_core {
 
-void ActorFactory::CreateActors(const json& config_file) {
-  auto numberActors = config_file["actors"].size();
-  if(numberActors <=0) { return; } //TODO Add some error message system
+ActorsList ActorFactory::CreateActors(const json &config_file) {
+  const auto numberActors = config_file["actors"].size();
+  if (numberActors <= 0) {
+    return std::move(m_actors);
+  } // TODO Add some error message system and maybe make actors unique ptrs?
   m_actors.reserve(numberActors);
 
-  for(auto& item : config_file["actors"].items()) {
+  for (auto &item : config_file["actors"].items()) {
     auto componentsCount = item.value()["components"].size();
-    if(componentsCount <=0){ continue; }
-
-    std::unique_ptr<game_core::Actor> actor{};
-    actor->SetName(item.value()["name"]);
-    actor->SetTag(item.value()["tag"]);
-    actor->SetStatus(game_core::EActorStatus::alive);
-    for(auto& component : item.value()["components"]) {
-      actor->AddComponent(game_core::GetComponentFromString(component["type"]).get());
+    if (componentsCount <= 0) {
+      continue;
     }
 
-    //TODO Use add component here after it's done with all the cases
+    std::unique_ptr<Actor> actor = std::make_unique<Actor>();
+    actor->SetName(item.value()["name"]);
+    actor->SetTag(actorTagStrings[item.value()["tag"]]);
+    actor->SetStatus(EActorStatus::alive);
+    for (auto &component : item.value()["components"]) {
+      actor->AddComponent(GetComponentFromString(component["type"]));
+    }
+
+    m_actors.push_back(std::move(actor));
   }
+
+  return std::move(m_actors);
 }
+} // namespace game_core

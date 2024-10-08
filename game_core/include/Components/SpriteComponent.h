@@ -21,7 +21,8 @@ using Textures = std::vector<Texture>;
   class SpriteComponent : public Component {
     public:
     explicit SpriteComponent(); // draw layer 0 = background
-    ~SpriteComponent() override = default;  //TODO Check for leaks. Don't trust the unique ptr and def destr :P
+      SpriteComponent(int i, int i1, ESpriteComponentType type, int i2);
+      ~SpriteComponent() override = default;  //TODO Check for leaks. Don't trust the unique ptr and def destr :P
 
     void AddTexture(SDL_Texture *texture);
     const Textures &GetTextures() const;

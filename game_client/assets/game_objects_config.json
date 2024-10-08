@@ -3,7 +3,7 @@
     {
       "name": "Player",
       "tag": "player",
-      "type": "dynamic",
+      "type": "pawn",
       "components": [
         {
           "type": "Transform",
@@ -14,8 +14,16 @@
           "facing": 1
         },
         {
+          "type": "Body",
+          "boxbody": "kinematic"
+        },
+        {
+          "type": "PlayerInput"
+        },
+        {
           "type": "Sprite",
           "sprite_type": 0,
+          "layer": 0,
           "sprite_name": "player"
         }
       ]
@@ -23,7 +31,7 @@
     {
       "name": "Ghostly",
       "tag": "enemy",
-      "type": "dynamic",
+      "type": "pawn",
       "components": [
         {
           "type": "Transform",
@@ -34,9 +42,37 @@
           "facing": 1
         },
         {
+          "type": "Body",
+          "boxbody": "dynamic"
+        },
+        {
           "type": "Sprite",
           "sprite_type": 0,
           "sprite_name": "anty"
+        }
+      ]
+    },
+    {
+      "name": "GroundTile",
+      "tag": "terrain",
+      "type": "static",
+      "components": [
+        {
+          "type": "Transform",
+          "position": {
+            "x": 0.00,
+            "y": 0.00
+          },
+          "facing": 1
+        },
+        {
+          "type": "Body",
+          "boxbody": "static"
+        },
+        {
+          "type": "Sprite",
+          "sprite_type": 0,
+          "sprite_name": "platform"
         }
       ]
     }

@@ -6,7 +6,10 @@ namespace game_core {
 SpriteComponent::SpriteComponent()
 : Component(),  m_type(ESpriteComponentType::count),
   m_drawingLayer(0), m_currentFrame (0), m_animationFPS (0) {
+}
 
+SpriteComponent::SpriteComponent(int drawLayer, int frame, ESpriteComponentType type, int fps)
+: Component(),  m_type(type), m_drawingLayer(drawLayer), m_currentFrame (frame), m_animationFPS (fps) {
 }
 
 void SpriteComponent::AddTexture(SDL_Texture *texture) {

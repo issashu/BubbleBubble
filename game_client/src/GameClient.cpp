@@ -1,14 +1,16 @@
 #include "GameClient.h"
 
+#include "Actors/Actor.h"
+#include "Actors/ActorFactory.h"
 #include "Components/SpriteComponent.h"
 #include "Graphics/Renderer.h"
+#include "Managers/ObjectManager.h"
 #include "Physics/PhysicsWorld.h"
 #include "SDL_image.h"
 
 #include "nlohmann/json_fwd.hpp"
 
 #include <fstream>
-#include <iostream>
 #include <nlohmann/json.hpp>
 
 namespace game_client {
@@ -86,12 +88,16 @@ std::weak_ptr<game_core::Renderer> GameClient::GetRenderer() {
   return m_renderer;
 }
 
-bool GameClient::GameAssetsLoad() {
+
+bool GameClient::LoadGameAssets() {
   using json = nlohmann::ordered_json;
 
   std::ifstream config_file(ASSETS_DIR"/game_objects_config.json");
   json parsedConfigFile = json::parse(config_file);
   auto numberActors = parsedConfigFile["actors"].size();
+  auto actorsList = game_core::ActorFactory::GetInstance().CreateActors(parsedConfigFile);
+  auto actorsManager = ObjectManager<std::unique_ptr<game_core::Actor>>::getInstance();
+  actorsManager->unite(std::move(actorsList));
   //TODO Initialise GameObject manager pre-allocating fixed size vector for actors
   return true;
 }

@@ -5,6 +5,8 @@
  */
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
+#include "Component.h"
+
 namespace game_core {
 
 class TransformComponent final : public Component {
